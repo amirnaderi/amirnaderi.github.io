@@ -1,3 +1,37 @@
-This is a test
+<!DOCTYPE html>
+<html>
 
-<script id="4b81b7b4-d216-42fa-9fff-183029ec00ba" src="https://my.siponline.ir/callButton.js" data-position="bottom_right" data-margin="20" data-url="sipOnline" > </script>
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <script src="https://p.trellocdn.com/power-up.min.js"></script>
+  <script>
+    TrelloPowerUp.initialize({
+      'card-buttons': function (t, options) {
+        return [
+          {
+            icon: "https://i.ibb.co/6sbknH0/logo-stroke-32pt-style-2-no-stroke.png",
+            text: "Hello World!",
+            callback: function (t) {
+              return t.card('id', 'name').then(card => alert(`Hello from ${card.name} (id: ${card.id})!`))
+            }
+          }
+        ]
+      },
+      'board-buttons': function (t, options) {
+        return [
+          { 
+            icon: "https://i.ibb.co/6sbknH0/logo-stroke-32pt-style-2-no-stroke.png",
+            text: "Hello World!",
+            callback: function (t) {
+              return t.board().then(board => alert(`Hello world!`))
+            }
+          }
+        ]
+      }
+    })
+  </script>
+</body>
+</html>
