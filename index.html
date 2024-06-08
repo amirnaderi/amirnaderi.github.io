@@ -9,29 +9,23 @@
   <script src="https://p.trellocdn.com/power-up.min.js"></script>
   <script>
     TrelloPowerUp.initialize({
-      'card-buttons': function (t, options) {
-        return [
-          {
-            icon: "https://i.ibb.co/6sbknH0/logo-stroke-32pt-style-2-no-stroke.png",
-            text: "Hello World!",
-            callback: function (t) {
-              return t.card('id', 'name').then(card => alert(`salam from ${card.name} (id: ${card.id})!`))
-            }
-          }
-        ]
-      },
-      'board-buttons': function (t, options) {
-        return [
-          { 
-            icon: "https://i.ibb.co/6sbknH0/logo-stroke-32pt-style-2-no-stroke.png",
-            text: "Hello World!",
-            callback: function (t) {
-              return t.board().then(board => alert(`Salam world!`))
-            }
-          }
-        ]
+  'card-buttons': function(t, options) {
+    return [{
+      icon: 'https://example.com/icon.png',
+      text: 'Open Modal',
+      callback: function(t) {
+        return t.modal({
+          url: 'https://example.com/modal.html',
+          accentColor: '#FF0000',
+          height: 500,
+          fullscreen: false,
+          title: 'My Modal Popup'
+        });
       }
-    })
+    }];
+  }
+});
+
   </script>
 </body>
 </html>
