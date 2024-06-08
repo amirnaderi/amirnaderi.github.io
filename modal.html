@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Modal Popup</title>
+  <script src="https://p.trellocdn.com/power-up.min.js"></script>
+  <script>
+    window.TrelloPowerUp.initialize({
+      'modal': function(t, options) {
+        return t.modal({
+          title: 'Modal Title',
+          accentColor: '#0000FF',
+          url: 'https://example.com/modal-content.html', // URL to load inside the modal
+          fullscreen: false
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+  <h1>This is the content of the modal popup!</h1>
+  <p>You can add any HTML content here.</p>
+</body>
+</html>
