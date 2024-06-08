@@ -1,23 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Modal Popup</title>
+  <title>Board List Modal</title>
   <script src="https://p.trellocdn.com/power-up.min.js"></script>
   <script>
-    window.TrelloPowerUp.initialize({
-      'modal': function(t, options) {
-        return t.modal({
-          title: 'Modal Title',
-          accentColor: '#0000FF',
-          url: 'https://example.com/modal-content.html', // URL to load inside the modal
-          fullscreen: false
+    document.addEventListener('DOMContentLoaded', function() {
+      var t = TrelloPowerUp.iframe();
+
+      t.board('all')
+        .then(function(board) {
+          return t.get('member', 'private', 'token')
+            .then(function(token) {
+              if (!token) {
+                t.alert({ message: 'You need to authorize this Power-Up.' });
+                t.closeModal();
+                return;
+              }
+
+              fetch(`https://api.trello.com/1/members/me/boards?key=446cbc1d6532c596ddc610207ead5576&token=${token}`)
+                .then(response => response.json())
+                .then(data => {
+                  var listContainer = document.getElementById('board-list');
+                  data.forEach(board => {
+                    var listItem = document.createElement('li');
+                    listItem.textContent = board.name;
+                    listContainer.appendChild(listItem);
+                  });
+                })
+                .catch(error => {
+                  console.error('Error fetching boards:', error);
+                });
+            });
         });
-      }
     });
   </script>
 </head>
 <body>
-  <h1>This is the content of the modal popup!</h1>
-  <p>You can add any HTML content here.</p>
+  <h1>Boards</h1>
+  <ul id="board-list"></ul>
 </body>
 </html>
