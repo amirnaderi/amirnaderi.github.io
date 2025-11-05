@@ -3,6 +3,13 @@
 
             </head>
             <body>
+                        <script>
+                                    Notification.requestPermission().then(result => {
+  if (result === "granted") {
+    new Notification("Direct Test", { body: "This is working ✅" });
+  }
+})
+                        </script>
                              <script id="96affacd-889f-4c72-bc58-9937aefbaac1" src="https://frontstaging.dartamas.com/chatButtonModule.js" 
     data-position="bottom_right" data-margin="20" data-url="sipOnline"></script>
                                                  
