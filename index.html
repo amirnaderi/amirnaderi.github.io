@@ -5,6 +5,7 @@
             <body>
                         <script>
                                     Notification.requestPermission().then(result => {
+                                                console.log('result',result);
   if (result === "granted") {
     new Notification("Direct Test", { body: "This is working ✅" });
   }
